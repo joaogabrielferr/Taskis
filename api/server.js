@@ -1,12 +1,15 @@
 const express = require("express");
-const apirouter = require("./routes/index")
+const apirouter = require("./routes/index");
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 app.use(express.json());
+app.use(cors());
 
-
-app.use('/task',apirouter);
+app.use('/api',apirouter);
 
 const port = process.env.port || 3001;
+
+
 
 app.listen(port);
