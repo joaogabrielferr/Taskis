@@ -1,9 +1,16 @@
-import React from 'react'
+import { useEffect } from "react"
 
-const All = () => {
+const All = ({all}) => {
+
+    useEffect( ()=>{
+        console.log(all);
+    }
+
+    ,[]);
+
     return (
-        <div>
-            
+        <div className = "taskContainer">
+          {  all.map( (task,index) => <h1 key={index}> {task.title} </h1>  )}
         </div>
     )
 }

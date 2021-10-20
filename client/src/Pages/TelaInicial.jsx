@@ -1,9 +1,12 @@
 import axios from "axios"
 import { useHistory } from "react-router";
+import Load from "./Load";
 
-const TelaInicial = ({username,adduser,logUser}) => {
+const TelaInicial = ({logged,username,adduser,logUser}) => {
 
-        let history = useHistory();
+
+    //so serve pra dar fetch na api antes do primeiro render ta tela principal do app
+    let history = useHistory();
     const us = "user1";
     const pw = "password1";
 
@@ -13,9 +16,12 @@ const TelaInicial = ({username,adduser,logUser}) => {
             username : us,
             password : pw
         });
+        console.log({logged})
         await adduser(response.data[0]["username"]);
         await logUser(1);
-        history.push("/app");
+        console.log({logged})
+        history.push("/load");
+        
     }
 
     return (
