@@ -24,11 +24,11 @@ router.post("/", async (req,res) =>{
 
     try{
         let d = req.body;
-        let results = await db.posttask(d.username,d.title,d.description,d.duedate,d.priority,d.concluded,d.archived);
-        res.status(400).send("Task created in the database");
+        let results = await db.posttask(d.un,d.title,d.description,d.duedate,d.priority,d.concluded,d.archived);
+        res.status(200).send("Task created in the database");
     }catch(err)
     {
-        res.send(err);
+            res.send(err);
     }
 });
 
@@ -36,7 +36,7 @@ router.post("/", async (req,res) =>{
 router.delete("/:id", async (req,res) =>{
     try{
         await db.deletetask(req.params.id);
-        res.status(400).send("task was deleted");
+        res.status(200).send("task was deleted");
     }catch(err)
     {
         res.send(err);

@@ -1,16 +1,21 @@
 import { useEffect } from "react";
+import Task from '../Components/Task'
+import Titulo from './Titulo'
 
-const Today = ({today}) => {
+const Today = ({today,deletatask}) => {
 
     useEffect( ()=>{
-        console.log({today});
+        
+        console.log(today);
+        
     }
 
-    ,[]);
+    ,[today]);
 
     return (
         <div className = "taskContainer">
-           { today.length > 0 ? <h1>Render the tasks here</h1> : <h1>There is no tasks for today</h1>}
+            <Titulo titulo = "Today"/>
+        { today.length > 0 ? today.map( (task,index) => <Task key = {index} task = {task}  deletatask = {deletatask}/>  ) : <h1>No tasks for today</h1>}
         </div>
     )
 }

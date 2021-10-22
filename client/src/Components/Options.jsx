@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Options = ({escolha,pegaEscolha}) => {
+const Options = ({escolha,setEscolha}) => {
 
     useEffect(()=>{
         seleciona("li1","al");
@@ -22,10 +22,10 @@ const Options = ({escolha,pegaEscolha}) => {
             }
         }
         
-        if(esc == "al")await pegaEscolha("all");
-        if(esc == "t")await pegaEscolha("today");
-        if(esc == "c")await pegaEscolha("concluded");
-        if(esc == "ar")await pegaEscolha("archived");
+        if(esc == "al")await setEscolha("all");
+        if(esc == "t")await setEscolha("today");
+        if(esc == "c")await setEscolha("concluded");
+        if(esc == "ar")await setEscolha("archived");
         
     }
 
@@ -35,8 +35,10 @@ const Options = ({escolha,pegaEscolha}) => {
                 <ul id = "ulopcao">
                 <li className = "liopcao" id = "li1"><button  onClick = {()=> seleciona("li1","al")} className = "opcao">All</button></li>
                 <li className = "liopcao" id = "li2"><button onClick = {()=>seleciona("li2","t")} className = "opcao">Today</button></li>
-                <li className = "liopcao" id = "li3"><button onClick = {()=>seleciona("li3","c")} className = "opcao">Concluded</button></li>
-                <li className = "liopcao" id = "li4"><button onClick = {()=>seleciona("li4","ar")} className = "opcao">Archived</button></li>         
+                <li className = "liopcao" id = "li3"><button className = "opcao">Tomorrow</button></li> 
+                <li className = "liopcao" id = "li4"><button className = "opcao">Overdue</button></li> 
+                <li className = "liopcao" id = "li5"><button onClick = {()=>seleciona("li5","c")} className = "opcao">Concluded</button></li>        
+                
                 </ul>
             </div>
         </div>

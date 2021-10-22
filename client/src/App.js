@@ -9,34 +9,21 @@ import {
 } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute';
 import Load from "./Pages/Load"
+import axios from 'axios';
 
 function App() {
 
   const [logged,setLogged] = useState(0);
   const [username,setUsername] = useState("");
-  const [alltasks,setAlltasks] = useState([]);
+  const [todas,setTodas] = useState("");
   const [all,setAll] = useState([]);
   const [today,setToday] = useState([]);
   const [concluded,setConcluded] = useState([]);
-  const [archived,setArchived] = useState([]);
+  const [loading,setLoading] = useState(true);
 
 
 
 
-
-  const adduser = async (user) =>{
-
-      setUsername(user);
-  }
-
-  const addtasks = async (tasks) =>{
-    setAlltasks(tasks);
-  }
-
-    const logUser = async () =>
-    {
-      setLogged(1);
-    }
 
 
   return (
@@ -45,9 +32,9 @@ function App() {
     <div className="App">
 
     <Switch>
-      <Route exact path = "/"> <TelaInicial username = {username} adduser = {adduser} logUser = {logUser}/>  </Route>
-      <ProtectedRoute path = "/app" component = {APP} logged = {logged} username = {username} alltasks = {alltasks} addtasks = {addtasks} all = {all} today = {today} concluded = {concluded} archived = {archived} setAll = {setAll} setToday = {setToday} setConcluded = {setConcluded} setArchived = {setArchived}/>
-      <ProtectedRoute path = "/load" component = {Load} logged = {logged} username = {username} alltasks = {alltasks} addtasks = {addtasks} all = {all} today = {today} concluded = {concluded} archived = {archived} setAll = {setAll} setToday = {setToday} setConcluded = {setConcluded} setArchived = {setArchived}   />
+      <Route exact path = "/"> <TelaInicial username = {username} setUsername = {setUsername} setLogged = {setLogged}/>  </Route>
+      <ProtectedRoute path = "/app" component = {APP} logged = {logged} username = {username} all = {all} setAll = {setAll} today = {today} setToday = {setToday} concluded = {concluded} setConcluded = {setConcluded} todas = {todas} setTodas = {setTodas}/>
+      {/* <ProtectedRoute path = "/load" component = {Load} logged = {logged} username = {username} alltasks = {alltasks} setAlltasks = {setAlltasks} all = {all} today = {today} setAll = {setAll} setToday = {setToday}   /> */}
       {/*<Route path = "/app"> <APP logged = {logged} username = {username} alltasks = {alltasks} addtasks = {addtasks}></APP> </Route>*/}
     </Switch>
     </div>

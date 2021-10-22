@@ -7,7 +7,8 @@ const Headerapp = ({username}) => {
                 <div className="Logo"><h1>TASKIS</h1></div>
                 <div className="Nav">
                 <h5 className = "navitem">Logged as {username}</h5>
-                <h3 className = "navitem">Logout</h3></div>
+                <h3 className = "navitem">Logout</h3>
+                </div>
             </div>
         </div>
     )

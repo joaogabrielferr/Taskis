@@ -1,16 +1,17 @@
-import { useEffect } from "react"
+import Task from '../Components/Task'
+import Titulo from './Titulo'
+import { useEffect } from 'react'
 
-const All = ({all}) => {
+const All = ({all,deletatask}) => {
 
-    useEffect( ()=>{
-        console.log(all);
-    }
-
-    ,[]);
+  useEffect(() => {
+      console.log(all);
+  }, [])
 
     return (
         <div className = "taskContainer">
-          {  all.map( (task,index) => <h1 key={index}> {task.title} </h1>  )}
+          <Titulo titulo = "All"/>
+          { all.length > 0 ? all.map( (task,index) => <Task key = {index} task = {task}  deletatask = {deletatask}/>  ) : <h1>No tasks yet</h1>}
         </div>
     )
 }

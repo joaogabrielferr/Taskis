@@ -1,86 +1,104 @@
 import axios from 'axios';
-import{useState,useEffect,useCallback} from 'react'
-import { Redirect,Route } from 'react-router';
+import{useState,useEffect} from 'react'
 import { withRouter } from 'react-router';
 import Header from '../Components/Headerapp'
 import Options from '../Components/Options'
 import All from '../Components/All'
 import Today from '../Components/Today'
 import Concluded from '../Components/Concluded'
-import Archived from '../Components/Archived'
+import Task from '../Components/Task';
+import Addtask from '../Components/Addtask';
 
-const APP = ({username,alltasks,addtasks,all,today,concluded,archived,setAll,setToday,setConcluded,setArchived}) => {
+const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,setTodas}) => {  
     
-    //opcao 1: receber todas as tasks pelo alltasks e devidir em todas,hoje,concluido e arquivo por aqui
-    //opcao 2: ter todos os estados direto no componente App(primeiro)
-
-    const [escolha,setEscolha] = useState("all");
+    const [escolha,setEscolha] = useState("");
+    const [addtasktoogle,setAddtasktoogle] = useState(true);
 
 
-    useEffect( ()=>{
-        console.log({username});
-        pegaTasks();
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/${username}`)
+        .then(response =>{
+            let data = [response.data];
+            data = data[0];
+            setTodas(data);
+            const a = data.filter((task) => task.concluded === 0);
+            setAll(a);
+            console.log(all);
             var hoje = new Date();
             var dd = String(hoje.getDate()).padStart(2, '0');
             var mm = String(hoje.getMonth() + 1).padStart(2, '0');
             var yyyy = hoje.getFullYear();
             hoje = dd + '/' + mm + '/' + yyyy;   
-            console.log("hoje:",hoje);
-            console.log(alltasks);
-            updatetasks(hoje);
+            const t = data.filter((task) => task.duedate === hoje && task.concluded === 0);
+            const c = data.filter((task) => task.concluded === 1);
+            setToday(t);
+            setConcluded(c);
+        });
+    }, []);
 
-
-    },[]);
-
-    const updatetasks = (hoje) =>{
-        console.log("hoje:",hoje);
-        console.log(alltasks);
-        setAll(alltasks);
-        setToday(alltasks.filter((task)=> task.duedate === hoje) );
-        setConcluded(alltasks.filter((task) => task.concluded === 1));
-        setArchived(alltasks.filter((task)=> task.archived === 1)); 
-    }
-
-
-    const pegaTasks = async () =>{
-        const response  = await axios.get(`http://localhost:3001/api/${username}`);
-        console.log(response.data);
-        const tasks = [response.data];
-        addtasks(tasks[0]);
+    const update = () =>{
         var hoje = new Date();
         var dd = String(hoje.getDate()).padStart(2, '0');
         var mm = String(hoje.getMonth() + 1).padStart(2, '0');
         var yyyy = hoje.getFullYear();
-        updatetasks(hoje);
+        hoje = dd + '/' + mm + '/' + yyyy;
+        let tasks = todas;   
+        let a = tasks.filter((task) => task.concluded === 0);
+        const t = a.filter((task) => task.duedate === hoje);
+        const c = tasks.filter((task) => task.concluded === 1);
+        setAll(a);
+        setToday(t);
+        setConcluded(c);
     }
 
-    const pegaEscolha = async (esc) =>{
-        setEscolha(esc);
+    const deletatask = async (id) =>{
+
+        const tasks = todas;
+        const a = tasks.filter(task => task.concluded === 0 && task.id != id);
+        setAll(a);
+        let hoje = new Date();
+        var dd = String(hoje.getDate()).padStart(2, '0');
+        var mm = String(hoje.getMonth() + 1).padStart(2, '0');
+        var yyyy = hoje.getFullYear();
+        hoje = dd + '/' + mm + '/' + yyyy;
+        const t = tasks.filter(task => task.duedate === hoje && task.concluded === 0 && task.id !== id);
+        setToday(t);
+        const c = tasks.filter(task => task.concluded === 1 && task.id !== id) 
+        setConcluded(c);
+        const to = tasks.filter(task => task.id !== id);
+        setTodas(to);
+        const response = await axios.delete(`http://localhost:3001/api/${id}`);
+        console.log(response);
     }
 
-    let componenteatual;
+    const tooggleaddtask = () =>{
+        setAddtasktoogle(!addtasktoogle);
+    }
 
-    if(escolha === "all")componenteatual = <All all = {alltasks}/>;
-    if(escolha === "today")componenteatual = <Today today = {today}/>
-    if(escolha === "concluded")componenteatual = <Concluded concluded = {concluded}/>;
-    if(escolha === "archived")componenteatual = <Archived archived = {archived}/>
+    let componente;
+
+    if(escolha == "all")componente = <All all = {all} deletatask = {deletatask}/>
+    if(escolha == "today")componente = <Today today = {today}  deletatask = {deletatask}/>
+    if(escolha == "concluded")componente = <Concluded concluded = {concluded}  deletatask = {deletatask}/>
 
     return (
         
         <div>
-
             <Header username = {username}/>
-            <Options escolha = {escolha} pegaEscolha = {pegaEscolha}/>
+            <div className="grid">
+            <Options escolha = {escolha} setEscolha = {setEscolha}/>
+            <div className="content">
             <div id="Botao">
-                <button>Add Task</button>
+            <button onClick = {tooggleaddtask}>Add Task</button>
             </div>
-            {componenteatual}
-            <h1>Teste</h1>
-
-            <h2>{username}</h2>
-            {
-                alltasks.map((task,index) => <h1 key = {index}>{task.title} {task.duedate}</h1>)
-            }
+            <div className="addtaskcontainer">
+            {addtasktoogle === true ? <Addtask tooggleaddtask = {tooggleaddtask}/> : ''}
+            </div>
+            <div className="componentecontainer">
+            {componente}
+            </div>
+            </div>
+            </div>
         </div>
         
     )

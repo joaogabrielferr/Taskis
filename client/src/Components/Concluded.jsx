@@ -1,16 +1,14 @@
-import { useEffect } from "react"
+import Task from '../Components/Task'
+import Titulo from './Titulo'
 
-const Concluded = ({concluded}) => {
+const Concluded = ({concluded,deletatask}) => {
 
-    useEffect( ()=>{
-        console.log(concluded);
-    }
 
-    ,[]);
 
     return (
         <div className = "taskContainer">
-           { concluded.length > 0 ? <h1>Render the tasks here</h1> : <h1>There is no tasks marked as concluded</h1>}
+        <Titulo titulo = "Concluded"/>
+        { concluded.length > 0 ? concluded.map( (task,index) => <Task key = {index} task = {task}  deletatask = {deletatask} />  ) : <h1>No tasks concluded yet</h1>}
         </div>
     )
 }
