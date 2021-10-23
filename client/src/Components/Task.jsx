@@ -1,19 +1,27 @@
 
 
-const Task = ({task,deletatask}) => {
+const Task = ({task,deletatask,taskconcluida}) => {
     
     return (
         <div className = "task">
             <div id="checkboxdiv">
             {
-                task.concluded === 1 ? <input type="checkbox" className = "checkbox" defaultChecked/> : <input type="checkbox" className = "checkbox"/>
+                task.concluded === 1 ? <input type="checkbox" className = "checkbox" defaultChecked/> : ""
             }
             </div>
-            <h3>{task.title}</h3>
-            <h5>{task.description}</h5>
+            <div id="taskcontent">
+                <h3>{task.title}</h3>
+                <h5>{task.description}</h5>
+                <br/>
+                 <div id="prioanddatetask">
+                <h5>Priority:{task.priority}&nbsp;&nbsp;&nbsp;</h5>
+                <h5>{task.duedate}</h5></div>
+            </div>
             <div id="icons">
-                <button className="fas fa-edit"></button>
-            <button className = "deletebutton" onClick = {()=>deletatask(task.id)}>X</button>
+                {/* <button className="fas fa-edit" id = "editbutton"></button> */}
+            <button className = "fas fa-trash-alt" id = "deletebutton" onClick = {()=>deletatask(task.id)}></button>
+            <p>&nbsp;&nbsp;&nbsp;</p>
+            <button id = "concluida" onClick = {()=> taskconcluida(task.id)}>Mark as concluded</button>
             </div>
         </div>
     )

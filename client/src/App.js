@@ -19,6 +19,8 @@ function App() {
   const [all,setAll] = useState([]);
   const [today,setToday] = useState([]);
   const [concluded,setConcluded] = useState([]);
+  const [tomorrow,setTomorrow] = useState([]);
+  const [overdue,setOverdue] = useState([]);
   const [loading,setLoading] = useState(true);
 
 
@@ -33,7 +35,7 @@ function App() {
 
     <Switch>
       <Route exact path = "/"> <TelaInicial username = {username} setUsername = {setUsername} setLogged = {setLogged}/>  </Route>
-      <ProtectedRoute path = "/app" component = {APP} logged = {logged} username = {username} all = {all} setAll = {setAll} today = {today} setToday = {setToday} concluded = {concluded} setConcluded = {setConcluded} todas = {todas} setTodas = {setTodas}/>
+      <ProtectedRoute path = "/app" component = {APP} logged = {logged} username = {username} all = {all} setAll = {setAll} today = {today} setToday = {setToday} concluded = {concluded} setConcluded = {setConcluded} todas = {todas} setTodas = {setTodas} tomorrow = {tomorrow} setTomorrow = {setTomorrow} overdue = {overdue} setOverdue = {setOverdue}/>
       {/* <ProtectedRoute path = "/load" component = {Load} logged = {logged} username = {username} alltasks = {alltasks} setAlltasks = {setAlltasks} all = {all} today = {today} setAll = {setAll} setToday = {setToday}   /> */}
       {/*<Route path = "/app"> <APP logged = {logged} username = {username} alltasks = {alltasks} addtasks = {addtasks}></APP> </Route>*/}
     </Switch>
