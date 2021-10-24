@@ -11,12 +11,16 @@ import Addtask from '../Components/Addtask';
 import Tomorrow from '../Components/Tomorrow'
 import Overdue from '../Components/Overdue'
 import Footer from '../Components/Footer'
+import { useHistory } from 'react-router';
 
-const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,setTodas,tomorrow,setTomorrow,overdue,setOverdue}) => {  
+const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,setTodas,tomorrow,setTomorrow,overdue,setOverdue,logado,setLogado}) => {  
     
     const [escolha,setEscolha] = useState("");
     const [addtasktoogle,setAddtasktoogle] = useState(false);
     const [loading,setLoading] = useState(false);
+    const [sort,setSort] = useState(false);
+
+    let history = useHistory();
 
     const diaformatado = (dia) =>{
         var dd = String(dia.getDate()).padStart(2, '0');
@@ -74,7 +78,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
             setTomorrow(am);
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 2000);
         });
     }, []);
 
@@ -202,6 +206,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     }
 
     const taskconcluida2 = (id) =>{
+        setLoading(true);
         let tasks = todas;
         let tsks = todas;
         tsks.forEach(task => {
@@ -242,8 +247,116 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         setTomorrow(am); 
         const c = tsks.filter(task => task.concluded === 1) 
         setConcluded(c);
-        setTodas(tsks);       
+        setTodas(tsks);
+        
+        axios.put(`http://localhost:3001/api/${id}`)
+        .then(response =>{
+            console.log(response);
+            setLoading(false);
+        })
 
+    }
+
+    const comparaordemalfabetica = (t1,t2) =>{
+        const a = t1.title.toUpperCase();
+        const b = t2.title.toUpperCase();
+        if(a < b)return -1;
+        if(b > a)return 1;
+        else return 0;
+    };
+
+    const comparaprioridade = (t1,t2) =>{
+        const a = t1.priority;
+        const b = t2.priority;
+        if(a > b)return -1;
+        if(a < b)return 1;
+        else return 0;
+    }
+
+    const ordenaordemalfabetica = () =>{
+        let tasks = todas;
+        tasks.sort((a,b) => {
+            return comparaordemalfabetica(a,b);
+        });
+        return tasks;
+    };
+
+    const ordenaprioridade = () =>{
+        let tasks = todas;
+        tasks.sort((a,b)=>{
+            return comparaprioridade(a,b);
+        });
+    }
+
+    const ordena1 = () =>{
+        setSort(false);
+        let tasks = ordenaordemalfabetica();
+        setTodas(tasks);
+        console.log(todas);
+        update();
+    }
+
+    const ordena2 = () =>{
+        setSort(false);
+        let tasks = ordenaprioridade();
+        setTodas(tasks);
+        console.log(todas);
+        update();
+    }
+
+    const update = () =>{
+
+            let data = todas;
+            setTodas(data);
+            const a = data.filter((task) => task.concluded === 0);
+            setAll(a);
+            console.log(all);
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
+            let yyyy = today.getFullYear();
+            let hoje = diaformatado(today);   
+            const t = data.filter((task) => task.duedate === hoje && task.concluded === 0);
+            const c = data.filter((task) => task.concluded === 1);
+            setToday(t);
+            setConcluded(c);
+            //set atrasados
+            const atrasa = data.filter((task) =>{
+                let datatask = task.duedate;
+                let ano = datatask.substring(6,10);
+                let mes = datatask.substring(3,5);
+                let dia = datatask.substring(0,3);
+                if(parseInt(yyyy) > parseInt(ano))
+                {
+                    return true;
+                }
+                if(parseInt(mm) > parseInt(mes))
+                {
+                    return true;
+                }
+                if(parseInt(dd) > parseInt(dia))
+                {
+                    return true;
+                }
+                return false;
+            });
+            setOverdue(atrasa);
+            let tmrw = new Date(today);
+            tmrw.setDate(tmrw.getDate() + 1);
+            let amanha = diaformatado(tmrw);
+            console.log(amanha);
+            const am = data.filter((task) => task.concluded === 0 && task.duedate === amanha);
+            setTomorrow(am);
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+
+
+    }
+
+    const logout = () =>{
+        setLogado(0);
+        history.push("/");
     }
 
     const tooggleaddtask = () =>{
@@ -261,12 +374,13 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     return (
         
         <div>
-            <Header username = {username}/>
+            <Header username = {username} logout = {logout}/>
             <div className="grid">
             <Options escolha = {escolha} setEscolha = {setEscolha}/>
             <div className="content">
             {addtasktoogle === false ? 
-            <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask">Add Task</button><button>Sort by</button></div> 
+            <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask">Add Task</button>{sort === false ?<button className = "sortbutton" onClick = {()=>setSort(true)}>Sort</button> :
+             <div id = "sort"><button className = "sortoption" onClick = {ordena1}>Sort alphabetically</button><button className = "sortoption" onClick = {ordena2}>Sort by priority</button></div>}</div> 
             : ''}
             <div className="addtaskcontainer">
             {addtasktoogle === true ? <Addtask tooggleaddtask = {tooggleaddtask} addtask = {addtask}/> : ''}

@@ -6,7 +6,7 @@ const Task = ({task,deletatask,taskconcluida}) => {
         <div className = "task">
             <div id="checkboxdiv">
             {
-                task.concluded === 1 ? <input type="checkbox" className = "checkbox" defaultChecked/> : ""
+                task.concluded === 1 ? <input type="checkbox" className = "checkbox" checked readOnly/> : ""
             }
             </div>
             <div id="taskcontent">
@@ -21,7 +21,7 @@ const Task = ({task,deletatask,taskconcluida}) => {
                 {/* <button className="fas fa-edit" id = "editbutton"></button> */}
             <button className = "fas fa-trash-alt" id = "deletebutton" onClick = {()=>deletatask(task.id)}></button>
             <p>&nbsp;&nbsp;&nbsp;</p>
-            <button id = "concluida" onClick = {()=> taskconcluida(task.id)}>Mark as concluded</button>
+            {task.concluded === 0 ? <button id = "concluida" onClick = {()=> taskconcluida(task.id)}>Mark as concluded</button> : ""}
             </div>
         </div>
     )

@@ -12,7 +12,7 @@ const pool = mysql.createPool(
 
 let mydb = {};
 
-//get all tasks from a user (using the user's email as id)
+//get as tasks do usuario
 mydb.tasksuser = (username) =>{
     return new Promise((resolve,reject) =>{
         pool.query("SELECT * FROM task WHERE username = ?",[username],(err,results)=>{
@@ -25,7 +25,7 @@ mydb.tasksuser = (username) =>{
     });
 };
 
-//post a new task to db
+//cria nova task no db
 mydb.posttask = (username,title,desc,date,prio,conc,arc) =>{
 
     return new Promise((resolve,reject) =>{
@@ -78,5 +78,16 @@ mydb.user = (username,password) =>{
     });   
 }
 
+mydb.attconcluida = (id) =>{
+    return new Promise((resolve,reject) =>{
+        pool.query('UPDATE task SET concluded = 1 WHERE id = ?',[id],(err,results) =>{
+            if(err)
+            {
+                return reject(err);
+            }
+                return resolve(results);
+        });
+    });
+}
 
 module.exports = mydb;

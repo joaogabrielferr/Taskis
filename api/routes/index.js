@@ -43,6 +43,16 @@ router.delete("/:id", async (req,res) =>{
     }
 });
 
+router.put("/:id",async (req,res) =>{
+    try{
+        await db.attconcluida(req.params.id);
+        res.status(200).send("task was updated, now it is concluded");
+    }catch(err)
+    {
+        res.send(err);
+    }
+});
+
 //verifica se existe um usuario no bd com o dado username e password
 router.post("/user", async (req,res) =>{
     try{
