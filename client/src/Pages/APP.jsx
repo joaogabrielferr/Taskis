@@ -366,15 +366,28 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
 
 
     const fazbusca = (input) =>{
+        setLoading(true);
+        setSearched([]);
         console.log(input);
         console.log("todas:",todas);
         let buscado = todas;
-        buscado.filter((task)=> task.title === "FULANO");
+        let newbuscado = [];
+        
+        buscado.forEach(task => {
+            console.log("olhando ",task.title);
+            if(task.title.includes(input))
+            {
+                console.log("achou ",input);
+                newbuscado.push(task);
+            }
+        });
 
         setTimeout(() => {
             console.log("BUSCADO:",buscado);
-            setSearched(buscado);
+            console.log("NEW BUSCADO:",newbuscado);
+            setSearched(newbuscado);
             setEscolha("search");
+            setLoading(false);
         }, 1000);
     }
 
