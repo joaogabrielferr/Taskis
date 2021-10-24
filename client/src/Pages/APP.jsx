@@ -56,15 +56,15 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
                 let ano = datatask.substring(6,10);
                 let mes = datatask.substring(3,5);
                 let dia = datatask.substring(0,3);
-                if(parseInt(yyyy) > parseInt(ano))
+                if(parseInt(yyyy) > parseInt(ano) && task.concluded === 0)
                 {
                     return true;
                 }
-                if(parseInt(mm) > parseInt(mes))
+                if(parseInt(mm) > parseInt(mes) && task.concluded === 0)
                 {
                     return true;
                 }
-                if(parseInt(dd) > parseInt(dia))
+                if(parseInt(dd) > parseInt(dia) && task.concluded === 0)
                 {
                     return true;
                 }
@@ -227,13 +227,13 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
             let ano = datatask.substring(6,10);
             let mes = datatask.substring(3,5);
             let dia = datatask.substring(0,3);
-            if(parseInt(ano) < parseInt(yyyy) && task.id !== id)
+            if(parseInt(ano) < parseInt(yyyy) && task.id !== id && task.concluded === 0)
             {
                 return true;
-            }else if(parseInt(mes) < parseInt(mm) && task.id !== id)
+            }else if(parseInt(mes) < parseInt(mm) && task.id !== id && task.concluded === 0)
             {
                 return true;
-            }else if(parseInt(dia) < parseInt(dd) && task.id !== id)
+            }else if(parseInt(dia) < parseInt(dd) && task.id !== id && task.concluded === 0)
             {
                 return true;
             }else return false;
@@ -407,7 +407,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
             <Options escolha = {escolha} setEscolha = {setEscolha}/>
             <div className="content">
             {addtasktoogle === false ? 
-            <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask">Add Task</button>{sort === false ?<button className = "sortbutton" onClick = {()=>setSort(true)}>Sort</button> :
+            <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask">+ Add Task</button>{sort === false ?<button className = "sortbutton" onClick = {()=>setSort(true)}>Sort</button> :
              <div id = "sort"><button className = "sortoption" onClick = {ordena1}>Sort alphabetically</button><button className = "sortoption" onClick = {ordena2}>Sort by priority</button></div>}</div> 
             : ''}
             <div className="addtaskcontainer">
