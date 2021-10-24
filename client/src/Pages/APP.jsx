@@ -11,9 +11,10 @@ import Addtask from '../Components/Addtask';
 import Tomorrow from '../Components/Tomorrow'
 import Overdue from '../Components/Overdue'
 import Footer from '../Components/Footer'
+import Search from '../Components/Search';
 import { useHistory } from 'react-router';
 
-const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,setTodas,tomorrow,setTomorrow,overdue,setOverdue,logado,setLogado}) => {  
+const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,setTodas,tomorrow,setTomorrow,overdue,setOverdue,logado,setLogado,searched,setSearched}) => {  
     
     const [escolha,setEscolha] = useState("");
     const [addtasktoogle,setAddtasktoogle] = useState(false);
@@ -363,6 +364,20 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         setAddtasktoogle(!addtasktoogle);
     }
 
+
+    const fazbusca = (input) =>{
+        console.log(input);
+        console.log("todas:",todas);
+        let buscado = todas;
+        buscado.filter((task)=> task.title === "FULANO");
+
+        setTimeout(() => {
+            console.log("BUSCADO:",buscado);
+            setSearched(buscado);
+            setEscolha("search");
+        }, 1000);
+    }
+
     let componente;
 
     if(escolha == "all")componente = <All all = {all} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
@@ -370,11 +385,11 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     if(escolha == "concluded")componente = <Concluded concluded = {concluded}  deletatask = {deletatask}/>
     if(escolha == "tomorrow")componente = <Tomorrow tomorrow = {tomorrow} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
     if(escolha == "overdue")componente = <Overdue overdue = {overdue} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
-
+    if(escolha == "search")componente = <Search searched = {searched} deletatask = {deletatask} taskconcluida = {taskconcluida}/>
     return (
         
         <div>
-            <Header username = {username} logout = {logout}/>
+            <Header username = {username} logout = {logout} fazbusca = {fazbusca}/>
             <div className="grid">
             <Options escolha = {escolha} setEscolha = {setEscolha}/>
             <div className="content">

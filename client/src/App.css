@@ -411,6 +411,25 @@
   color: white;
 }
 
+#searchbarcontainer{
+  width: 30%;
+  height: 80%;
+}
+
+#searchbar{
+  width: 80%;
+  height: 100%;
+  border-style: none;
+}
+
+#searchbarbutton{
+  width: 10%;
+  height: 100%;
+  border-style: none;
+  background-color: white;
+  cursor: pointer;
+}
+
 #icon{
   width: 30vw;
   height: 30vh;
