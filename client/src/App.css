@@ -5,7 +5,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 
@@ -16,7 +16,7 @@
 }
 
 .innerheaderapp{
-  width: 90%;
+  width: 95%;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -26,11 +26,11 @@
 }
 
 #nome{
-  font-family: 'Pattaya', sans-serif;
+  font-family: 'Eczar', serif;
 }
 
 #nome:hover{
-  color: grey;
+  color: #dadada;
 }
 
 .Logo{
@@ -45,10 +45,11 @@
   width: 100%;
   height: 100%;
   font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.fa-home:hover{
-  color: grey;
+#homeicon:hover{
+  color: #dadada;
 }
 
 .Nav{
@@ -58,12 +59,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Montserrat', sans-serif;
 
 }
 
 .navitem{
   padding-left:10%;
-  padding-top: 5%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navitem:hover{
+  color: #dadada;
 }
 
 #options{
@@ -73,8 +79,7 @@
   justify-content: center;
   /* float: left; */
   grid-area : opcoes;
-  background-color: #e3e3e3;
-
+  background-color: #ebebeb;
 }
 
 #inneroptions{
@@ -82,6 +87,7 @@
   height: 50%;
   display: flex;
   flex-direction: column;
+  
 }
 
 
@@ -91,6 +97,9 @@
   margin-top: 5%;
 }
 
+.liopcao{
+  display: flex;
+}
 
 .liopcao:hover{
   background-color: #707070;
@@ -102,10 +111,13 @@
 
   width: 100%;
   margin: 3%;
+  margin-left:20%;
   border-style: none;
   background-color: transparent;
   cursor: pointer;
   color: black;
+  text-align: left;
+  font-size: medium;
 
 
 }
@@ -124,13 +136,40 @@
   border-style: none;
   cursor: pointer;
   background-color: transparent;
-  background-color: #2e5799;
-  color: white; 
+  color: black; 
   width: 20%;
+  transition: 0.5s;
+  font-size: large;
 }
 
 #botaoaddtask:hover{
-  background-color: #335fa6;
+
+}
+
+#botaoaddtask:after{
+  content: '';
+  height: 0.15rem;
+  width: 0%;
+  background-color: #2e5799;
+  display: block;
+  transition: 0.3s ease-in-out;
+}
+
+#botaoaddtask:hover::after{
+  content: '';
+  height: 0.15rem;
+  width: 100%;
+  background-color: #2e5799;
+  display: block;
+}
+
+#mais{
+  color: #2e5799;
+  font-size: large;
+}
+
+#prio{
+  background-color:#2e5799;
 }
 
 #Botao button{
@@ -216,11 +255,11 @@
   justify-content: center;
   width:20%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 #concluida{
-  width: 100%;
+  width: 20%;
   color: white;
   background-color: #2e5799;
   padding: 2%;
@@ -232,7 +271,7 @@
 .addtask{
     width: 100%;
     border: 1px solid grey;
-    /* border-radius: 10px; */
+    border-radius: 0.3rem;
     display: grid;
     grid-template-rows: auto;
     row-gap: 3vh;
@@ -293,6 +332,7 @@
   padding: 2%;
   border-style: none;
   cursor:pointer;
+  border-radius: 0.3rem;
 }
 
 #addtaskbutton{
@@ -401,13 +441,14 @@
 
 .Footer{
   width: 100%;
-  height: 30vh;
+  height: 20vh;
   background-color: #2e5799;
   margin-top: 5%;
   color: white;
   display: flex;
   justify-content: center;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #footercontainer{
@@ -415,11 +456,10 @@
   height: 100%;
   display: grid;
   grid-template-columns: auto auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
-#madeby{
-  
-}
+
 
 .Footer a{
   color: white;
@@ -444,19 +484,23 @@
   width: 80%;
   height: 100%;
   border-style: none;
+  border-radius: 0.3rem 0 0 0.3rem;
+  padding-left: 1rem;
 }
 
 #searchbarbutton{
   width: 10%;
   height: 100%;
   border-style: none;
-  background-color: grey;
+  background-color: #dadada;
   cursor: pointer;
+  border-radius: 0 0.3rem 0.3rem 0;
 }
 
 #icon{
   width: 30vw;
   height: 30vh;
+  color: #dadada;
 }
 
 #icon img{
@@ -472,17 +516,23 @@
   justify-content: space-around;
   align-items: center;
   height: 100%;
+  font-size: large;
   
 }
 
 .sortoption{
   border-style: none;
-  width: 50%;
+  width: 70%;
   height: 30%;
-  color: white;
-  background-color: #2e5799;
+  color: black;
+  background-color: transparent;
   cursor: pointer;
+  text-align: left;
+  font-size: medium;
+}
 
+.sortoption:hover{
+  background-color: #dadada;
 }
 
 .sortbutton{
@@ -498,4 +548,101 @@
 #signoutcontainer{
   font-size: 1.5rem;
   cursor: pointer;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxicon{
+  transition: 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+  color: #dadada;
+}
+
+.boxicon img{
+  color: #dadada;
+}
+
+.boxicon:hover{
+  transform: translateY(10%);
+}
+
+#loginbuttons{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: auto auto;
+}
+
+.Menu{
+  background-color: transparent;
+  border-style: none;
+  font-size: larger;
+  color:white;
+  cursor:pointer;
+}
+
+.Menu:hover{
+  color:#dadada;
+}
+
+#tudo{
+  color: #2e5799;
+}
+
+#hoje{
+  color: orange;
+}
+
+#amanha{
+  color: green;
+}
+
+#atrasado{
+  color: red;
+}
+
+#concluido{
+  color: purple;
+}
+
+@media only screen and (max-width:600px)
+{
+  .grid{
+
+    display: grid;
+    grid-template-areas:
+    'opcoes'
+    'content';
+  }
+
+  #options{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* float: left; */
+    grid-area : opcoes;
+    background-color: #ebebeb;
+  }
+
+  #taskis{
+    display: none;
+  }
+
+
+}
+
+@media only screen and (max-width:400px)
+{
+  .innerheaderapp{
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

@@ -50,7 +50,7 @@ const Addtask = ({tooggleaddtask,addtask}) => {
              </div>
              <div id="datepriocontainer">
                  <div><label htmlFor="">Due date </label><input type="date" id = "date" /></div>
-                 <div><label htmlFor="">Priority </label><input type="range" min = "1" max = "10" defaultValue = "1" onChange = {(e)=>{setPrio(e.target.value)}}/></div>
+                 <div><label htmlFor="">Priority </label><input type="range" id = "prio" min = "1" max = "10" defaultValue = "1" onChange = {(e)=>{setPrio(e.target.value)}}/></div>
              </div>
              {/* <div className  = "blankspace"> </div> */}
         </div>
@@ -60,6 +60,7 @@ const Addtask = ({tooggleaddtask,addtask}) => {
                  <button id="cancelbutton" onClick = {tooggleaddtask}>Cancel</button>
              </div> 
         </div>
+        
     )
 }
 

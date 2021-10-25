@@ -21,7 +21,7 @@ const Task = ({task,deletatask,taskconcluida}) => {
                 {/* <button className="fas fa-edit" id = "editbutton"></button> */}
             <button className = "fas fa-trash-alt" id = "deletebutton" onClick = {()=>deletatask(task.id)}></button>
             <p>&nbsp;&nbsp;&nbsp;</p>
-            {task.concluded === 0 ? <button id = "concluida" onClick = {()=> taskconcluida(task.id)}>Mark as concluded</button> : ""}
+            {task.concluded === 0 ? <button id = "concluida" onClick = {()=> taskconcluida(task.id)}><i class="fas fa-check"></i></button> : ""}
             </div>
         </div>
     )

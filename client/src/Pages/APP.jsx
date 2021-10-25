@@ -20,6 +20,8 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     const [addtasktoogle,setAddtasktoogle] = useState(false);
     const [loading,setLoading] = useState(false);
     const [sort,setSort] = useState(false);
+    const [show,setShow] = useState(true);
+    
 
     let history = useHistory();
 
@@ -391,6 +393,10 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         }, 1000);
     }
 
+    const mostramenu = () =>{
+        setShow(!show);
+    }
+
     let componente;
 
     if(escolha == "all")componente = <All all = {all} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
@@ -402,13 +408,13 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     return (
         
         <div>
-            <Header username = {username} logout = {logout} fazbusca = {fazbusca}/>
+            <Header username = {username} logout = {logout} fazbusca = {fazbusca} mostramenu = {mostramenu}/>
             <div className="grid">
-            <Options escolha = {escolha} setEscolha = {setEscolha}/>
+            {show ? <Options escolha = {escolha} setEscolha = {setEscolha}/> : ''}
             <div className="content">
             {addtasktoogle === false ? 
-            <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask">+ Add Task</button>{sort === false ?<button className = "sortbutton" onClick = {()=>setSort(true)}>Sort</button> :
-             <div id = "sort"><button className = "sortoption" onClick = {ordena1}>Sort alphabetically</button><button className = "sortoption" onClick = {ordena2}>Sort by priority</button></div>}</div> 
+            <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask"><i className="fas fa-plus-circle" id = "mais"></i> Add Task</button>
+             <div id = "sort"><button className = "sortoption" onClick = {ordena1}><i className="fas fa-sort-alpha-up"></i>&nbsp;&nbsp;Sort alphabetically</button><button className = "sortoption" onClick = {ordena2}><i className="fas fa-sort-numeric-up"></i>&nbsp;&nbsp;Sort by priority</button></div></div> 
             : ''}
             <div className="addtaskcontainer">
             {addtasktoogle === true ? <Addtask tooggleaddtask = {tooggleaddtask} addtask = {addtask}/> : ''}
@@ -418,7 +424,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
             </div>
             </div>
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
         
     )

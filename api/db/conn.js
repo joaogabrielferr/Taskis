@@ -78,6 +78,21 @@ mydb.user = (username,password) =>{
     });   
 }
 
+mydb.checkuser = (username) =>{
+    return new Promise((resolve,reject) =>{
+        pool.query('SELECT * FROM users WHERE username = ?',[username],(err,results) =>{
+            if(err)
+            {
+                return reject(err);
+            }
+                return resolve(results);
+        });
+    });   
+}
+
+
+
+
 mydb.attconcluida = (id) =>{
     return new Promise((resolve,reject) =>{
         pool.query('UPDATE task SET concluded = 1 WHERE id = ?',[id],(err,results) =>{
