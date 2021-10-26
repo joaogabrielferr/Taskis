@@ -5,16 +5,35 @@
 
 #logoprincipal{
     transition: 0.5s;
+    font-size: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#logoprincipal:hover{
-    color: #2e5799;
+#taskisgrande{
+    color: black;
+}
+
+#aboutlink{
+    font-size: 3vh;
+}
+
+#creditos{
+    font-size: 2.5vh;
 }
 
 #loginresgister{
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 5vh;
+}
+
+.mensagemform{
+    font-size: 2.5vh;
 }
 
 #loginbuttons{
@@ -22,12 +41,15 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    font-size: larger;
 }
 
 .botaodelogin,.botaodecancelar{
     border-style: none;
     padding:1%;
     cursor:pointer;
+    font-size: 2vh;
+
 }
 
 .botaodelogin{
@@ -47,7 +69,7 @@
     cursor: pointer;
     border-style: none;
     color:white;
-    font-size: large;
+    font-size: 3vh;
     background-color: #2e5799;
     transition: 0.2s;
 }
@@ -71,7 +93,7 @@
 }
 
 .logincontainer,.registercontainer{
-    width: 100%;
+    width: 30vw;
 }
 
 
@@ -79,8 +101,9 @@
     padding: 1%;
     border-style: none;
     border: 0.1rem solid grey;
-    width: 50%;
+    width: 80%;
     padding:3%;
+    font-size: large;
 
 }
 
@@ -91,15 +114,16 @@
 
 .logreg{
     width: 90%;
-    height: 70vh;
+    height: 65vh;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     z-index: 0;
     position: relative;
     flex-direction: column;
     align-items: flex-start;
     /* margin-left: 10%; */
     margin: 0 auto;
+    flex-direction: row;
 }
 
 .imagem{
@@ -141,6 +165,8 @@
   .headerinicial{
     width: 100%;
     height: 7vh;
+    color: white;
+    background-color: #171717;
   }
 
   .innerheaderinicial{
@@ -150,15 +176,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
   }
 
   .innerheaderinicial a{
       text-decoration: none;
-      color:black;
+      color: white;
   }
 
 #teste{
-    font-size: 3rem;
+    font-size: 5vh;
+    font-family: 'Poppins', sans-serif;
 }
 
 #footertelainicial{
@@ -174,6 +202,7 @@
     grid-template-rows: auto auto;
     row-gap: 0.5rem;
     color: black;
+    font-size: 2vh;
 }
 
 #eusociais{
@@ -188,6 +217,71 @@
     transform: translateY(-10%);
 }
 
+.logogrande{
+    font-size: 8vh;
+    width: 100%;
+    text-align: left;
+}
+
+.logogrande h1{
+    transition: 0.8s;
+}
+
+.logogrande h1 i{
+    color: #2e5799;
+}
+
+#taskisgrande:hover{
+    color:#2e5799;
+    letter-spacing: -10vw;
+    color: transparent;
+}
+
+
+
+
 html {
     scroll-behavior: smooth;
+  }
+
+  @media only screen and (max-width:600px) {
+    .logogrande{
+        font-size: 3vh;
+        width: 100%;
+        text-align: left;
+    }
+
+    .logreg{
+        flex-direction: column;
+        height: 90vh;
+    }
+
+    #loginresgister{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5vh;
+    }
+
+    .inputlogin{
+        padding: 1%;
+        border-style: none;
+        border: 0.1rem solid grey;
+        width: 100%;
+        padding:1%;
+        font-size: large;
+    
+    }
+    #loginbutton,#registerbutton{
+        width: 40vw;
+        height: 5vh;
+        cursor: pointer;
+        border-style: none;
+        color:white;
+        font-size: 3vh;
+        background-color: #2e5799;
+        transition: 0.2s;
+    }
   }

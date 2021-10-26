@@ -16,7 +16,7 @@ const Today = ({today,deletatask,taskconcluida}) => {
     return (
         <div className = "taskContainer">
         <Titulo titulo = "Today"/>
-        { today.length > 0 ? today.map( (task,index) => <Task key = {index} task = {task}  deletatask = {deletatask} taskconcluida = {taskconcluida}/>  ) : <div><h1>No tasks for today</h1><div className = "blankspace"> </div><div id="icon" className = "boxicon"><img src={box} alt="" /></div></div>}
+        { today.length > 0 ? today.map( (task,index) => <Task key = {index} task = {task}  deletatask = {deletatask} taskconcluida = {taskconcluida}/>  ) : <div><h1  className = "mensagem">No tasks for today</h1><div className = "blankspace"> </div><div id="icon" className = "boxicon"><img src={box} alt="" /></div></div>}
         </div>
     )
 }

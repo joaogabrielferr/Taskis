@@ -329,25 +329,22 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
                 let ano = datatask.substring(6,10);
                 let mes = datatask.substring(3,5);
                 let dia = datatask.substring(0,3);
-                if(parseInt(yyyy) > parseInt(ano))
+                if(parseInt(ano) < parseInt(yyyy) && task.concluded === 0)
                 {
                     return true;
-                }
-                if(parseInt(mm) > parseInt(mes))
+                }else if(parseInt(mes) < parseInt(mm) && task.concluded === 0)
                 {
                     return true;
-                }
-                if(parseInt(dd) > parseInt(dia))
+                }else if(parseInt(dia) < parseInt(dd)  && task.concluded === 0)
                 {
                     return true;
-                }
-                return false;
+                }else return false;
+    
             });
             setOverdue(atrasa);
             let tmrw = new Date(today);
             tmrw.setDate(tmrw.getDate() + 1);
             let amanha = diaformatado(tmrw);
-            console.log(amanha);
             const am = data.filter((task) => task.concluded === 0 && task.duedate === amanha);
             setTomorrow(am);
             setTimeout(() => {
@@ -376,17 +373,13 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         let newbuscado = [];
         
         buscado.forEach(task => {
-            console.log("olhando ",task.title);
             if(task.title.includes(input))
             {
-                console.log("achou ",input);
                 newbuscado.push(task);
             }
         });
 
         setTimeout(() => {
-            console.log("BUSCADO:",buscado);
-            console.log("NEW BUSCADO:",newbuscado);
             setSearched(newbuscado);
             setEscolha("search");
             setLoading(false);

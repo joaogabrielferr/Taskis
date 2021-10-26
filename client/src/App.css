@@ -35,7 +35,7 @@
 
 .Logo{
   color: white;
-  font-size: larger;
+  font-size: 3vh;
   display: flex;
 }
 
@@ -44,7 +44,7 @@
   border-radius: 10%;
   width: 100%;
   height: 100%;
-  font-size: 1.5rem;
+  font-size: 3.5vh;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -117,7 +117,7 @@
   cursor: pointer;
   color: black;
   text-align: left;
-  font-size: medium;
+  font-size: 2.5vh;
 
 
 }
@@ -139,7 +139,7 @@
   color: black; 
   width: 20%;
   transition: 0.5s;
-  font-size: large;
+  font-size: 3vh;
 }
 
 #botaoaddtask:hover{
@@ -165,11 +165,13 @@
 
 #mais{
   color: #2e5799;
-  font-size: large;
+  font-size: 3vh;
 }
 
 #prio{
   background-color:#2e5799;
+  width: 10vw;
+  height: 2vh;
 }
 
 #Botao button{
@@ -203,6 +205,10 @@
   align-items: center;
 }
 
+.task:hover{
+  background-color: #ebebeb;
+}
+
 .checkbox:hover{
     cursor: pointer;
     box-shadow: 0px 0px 1px #fc4e03;
@@ -231,7 +237,7 @@
 #deletebutton,#editbutton{
     color : "black";
     background-color: transparent;
-    font-size: larger;
+    font-size: 3vh;
     cursor: pointer;
     border-style: none;
 }
@@ -246,6 +252,7 @@
   align-items: center;
   width: 90%;
   margin-top: 5%;
+  font-size: 3.80vh;
 
 }
 
@@ -270,6 +277,8 @@
 
 .addtask{
     width: 100%;
+    height: 30vh;
+    /* width: 143vh; */
     border: 1px solid grey;
     border-radius: 0.3rem;
     display: grid;
@@ -289,6 +298,7 @@
   padding: 3vh 3vh 0 0;
   border-style: none;
   border: none;
+  font-size: 2vh;
 }
 #descarea{
   width: 97%;
@@ -296,6 +306,7 @@
   vertical-align: middle;
   border-style: none;
   word-break: break-all;
+  font-size: 2vh;
 }
 
 *:focus {
@@ -306,6 +317,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2vh;
 }
 
 #datepriocontainer{
@@ -313,6 +325,13 @@
   justify-content: space-between;
   width: 98%;
   margin: 0 auto;
+  font-size: 2vh;
+}
+
+#date{
+  cursor: pointer;
+  width: 10vw;
+  font-size:2vh;
 }
 
 #buttonscontainer{
@@ -333,6 +352,7 @@
   border-style: none;
   cursor:pointer;
   border-radius: 0.3rem;
+  font-size: 2vh;
 }
 
 #addtaskbutton{
@@ -351,6 +371,14 @@
   flex-direction: column;
   text-align: left;
   margin-left: 5%;
+}
+
+#taskcontent h3{
+  font-size: 3vh;
+}
+
+#taskcontent h5{
+  font-size: 1.5vh;
 }
 
 #prioanddatetask{
@@ -486,6 +514,7 @@
   border-style: none;
   border-radius: 0.3rem 0 0 0.3rem;
   padding-left: 1rem;
+  font-size: 2vh;
 }
 
 #searchbarbutton{
@@ -495,6 +524,7 @@
   background-color: #dadada;
   cursor: pointer;
   border-radius: 0 0.3rem 0.3rem 0;
+  font-size: 2vh;
 }
 
 #icon{
@@ -516,7 +546,7 @@
   justify-content: space-around;
   align-items: center;
   height: 100%;
-  font-size: large;
+  font-size: 2vh;
   
 }
 
@@ -528,7 +558,7 @@
   background-color: transparent;
   cursor: pointer;
   text-align: left;
-  font-size: medium;
+  font-size: 2.5vh;
 }
 
 .sortoption:hover{
@@ -546,7 +576,7 @@
 }
 
 #signoutcontainer{
-  font-size: 1.5rem;
+  font-size: 3.5vh;
   cursor: pointer;
   display:flex;
   justify-content: center;
@@ -578,7 +608,7 @@
 .Menu{
   background-color: transparent;
   border-style: none;
-  font-size: larger;
+  font-size: 3vh;
   color:white;
   cursor:pointer;
 }
@@ -630,8 +660,14 @@
   #taskis{
     display: none;
   }
+}
 
+#checkconcluida{
+  font-size: 2vh;
+}
 
+.mensagem{
+  font-size: 3vh;
 }
 
 @media only screen and (max-width:400px)

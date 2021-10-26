@@ -134,25 +134,50 @@ const TelaInicial = ({logged,username,setUsername,setLogged}) => {
              <div className="telainicialcontainer">
             <div className = "headerinicial">
                 <div className="innerheaderinicial">
-                    <h1 id = "logoprincipal">TASKIS<i className="fas fa-check"></i></h1>
-                    <h3>  <a href="#footertelainicial">ABOUT</a></h3>
+                    <div id = "logoprincipal">
+                    <h2><a href="https://github.com/joaogabrielferr" target="_blank"><i className="fab fa-github"></i></a></h2>
+                    <h1>&nbsp;&nbsp;&nbsp; </h1>
+                    <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
+                    </div>
+                    <h3 id ="aboutlink">  <a href="#footertelainicial">ABOUT</a></h3>
                 </div>
             </div>
             <hr/>
             <div className = "logreg">
-        
-            
-            <h1 id = "teste">
-            <Typewriter
-                textStyle = {{fontSize: '20.5em'}}
-                options={{
-                    strings: ['Meet friends saturday at 10 am.','finish my computer graphics project.', 'Start studying for my exam next week.',
-                    'Start learning C#.','Taskis👍'],
-                    autoStart: true,
-                    loop: true,
-                }}
-                />  
+
+            <div className="logogrande">
+                <h1 id = "taskisgrande">TASKIS<i className="fas fa-check"></i></h1>
+             <h1 id = "teste">
+              
+              <Typewriter
+                    onInit={(typewriter) => {
+                        typewriter
+                        .typeString('Create task:')
+                        .typeString('Meet friends saturday at 10 am.')
+                        .pauseFor(1000)
+                        .deleteChars(31)
+                        .typeString('finish my computer graphics project.')
+                        .pauseFor(1000)
+                        .deleteChars(36)
+                        .typeString('Study for my algorithms exam next week.')
+                        .pauseFor(1000)
+                        .deleteChars(39)
+                        .typeString('Start learning C#.')
+                        .pauseFor(1000)
+                        .deleteChars(18)
+                        .deleteAll()
+                        .typeString('Taskis👍')
+                        .pauseFor(2000)
+                        .deleteAll()
+                        .start();
+                    }}
+                    options = {{loop:true}}
+/>
+
         </h1>
+            </div>
+            
+
 
         <p>&nbsp;</p>      
             
@@ -165,18 +190,18 @@ const TelaInicial = ({logged,username,setUsername,setLogged}) => {
             mostraloginform === true ? <div className="loginformcontainer">
             <Loginform setMostraloginform = {setMostraloginform} login = {login} setPesquisoulogin = {setPesquisoulogin}/>
             </div> : '')}
-            { mostraloginform && naoexiste ? <p>There isn't a user with this username and password</p>:''}
-            {pesquisoulogin && (un.length === 0 || pw.length === 0) ? <p>Enter a valid username and password</p>:''}
+            { mostraloginform && naoexiste ? <p className = "mensagemform">There isn't a user with this username and password</p>:''}
+            {pesquisoulogin && (un.length === 0 || pw.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
             <p>&nbsp;</p>
             {mostraloginreg === false ? <button onClick = {()=>setMostraloginreg(true)} id = "registerbutton">Register</button>:''}
             { loadingregister === true ? <div className="loader">Loading...</div> :(
             mostraloginreg === true ? <div className="loginformcontainer">
             <Registerform setMostraloginreg = {setMostraloginreg} register = {register} setPesquisouregister = {setPesquisouregister}/>
             </div> : '')}
-            {pesquisouregister && (unreg.length === 0 || pwreg.length === 0) ? <p>Enter a valid username and password</p>:''}
-            {erro ? <p>An error ocurred!</p> : ''}
-            {jaexiste ? <p>There is already a user registered with this username. Please choose another one.</p> : ''}
-            {registrado ? <p>Registration completed, you may log in now!</p> : ''}
+            {pesquisouregister && (unreg.length === 0 || pwreg.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
+            {erro ? <p className = "mensagemform">An error ocurred!</p> : ''}
+            {jaexiste ? <p className = "mensagemform">There is already a user registered with this username. Please choose another one.</p> : ''}
+            {registrado ? <p className = "mensagemform">Registration completed, you may log in now!</p> : ''}
             </div>
             </div>
             
@@ -198,7 +223,7 @@ const TelaInicial = ({logged,username,setUsername,setLogged}) => {
                     <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
                 </div>
             </div>
-            <div>Empty box icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <div id = "creditos">Empty box icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </div>
         <h1>&nbsp; </h1>
             <h1>&nbsp; </h1>
