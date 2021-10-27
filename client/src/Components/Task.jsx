@@ -1,6 +1,6 @@
 
 
-const Task = ({task,deletatask,taskconcluida}) => {
+const Task = ({task,deletatask,taskconcluida,tooglemostraedit}) => {
     
     return (
         <div className = "task">
@@ -19,9 +19,13 @@ const Task = ({task,deletatask,taskconcluida}) => {
             </div>
             <div id="icons">
                 {/* <button className="fas fa-edit" id = "editbutton"></button> */}
+            {task.concluded === 0 ?
+            <button className = "far fa-edit" id = "editbutton" onClick = {()=>{tooglemostraedit(task.id,task.title,task.description)}}></button> : ''
+            }
+            <p>&nbsp;&nbsp;&nbsp;</p>
             <button className = "fas fa-trash-alt" id = "deletebutton" onClick = {()=>deletatask(task.id)}></button>
             <p>&nbsp;&nbsp;&nbsp;</p>
-            {task.concluded === 0 ? <button id = "concluida" onClick = {()=> taskconcluida(task.id)}><i class="fas fa-check" id = "checkconcluida"></i></button> : ""}
+            {task.concluded === 0 ? <button id = "concluida" onClick = {()=> taskconcluida(task.id)}><i className="fas fa-check" id = "checkconcluida"></i></button> : ""}
             </div>
         </div>
     )

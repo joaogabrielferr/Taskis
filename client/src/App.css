@@ -347,7 +347,7 @@
   height: 1vh;
 }
 
-#addtaskbutton,#cancelbutton{
+#addtaskbutton,#cancelbutton,#edittaskbutton{
   padding: 2%;
   border-style: none;
   cursor:pointer;
@@ -358,6 +358,11 @@
 #addtaskbutton{
   color: white;
   background-color: #2e5799;
+}
+
+#edittaskbutton{
+  color: white;
+  background-color: #fc4e03;
 }
 
 #cancelbutton{

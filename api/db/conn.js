@@ -105,4 +105,25 @@ mydb.attconcluida = (id) =>{
     });
 }
 
+mydb.editatask = (id,title,desc,date,prio) =>{
+
+    return new Promise((resolve,reject)=>{
+
+        pool.query('UPDATE task SET title = ?, description = ?, duedate = ?, priority = ? WHERE id = ?',
+        [title,desc,date,prio,id],(err,results)=>{
+
+            if(err)
+            {
+                return reject(err);
+            }
+                return resolve(results);
+
+        });
+
+    });
+
+}
+
+
+
 module.exports = mydb;

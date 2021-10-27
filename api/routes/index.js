@@ -43,7 +43,22 @@ router.delete("/:id", async (req,res) =>{
     }
 });
 
+
 //att task
+router.put("/task",
+[body('id').trim().escape(),body('title').trim().escape(),body('description').trim().escape()],async (req,res) =>{
+    try{
+        let d = req.body;
+        await db.editatask(d.id,d.title,d.description,d.duedate,d.priority);
+        res.status(200).send("task was updated");
+    }catch(err)
+    {
+        res.send(err);
+    }
+});
+
+
+//att task concluida
 router.put("/:id",async (req,res) =>{
     try{
         await db.attconcluida(req.params.id);

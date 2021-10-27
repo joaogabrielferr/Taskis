@@ -13,6 +13,7 @@ import Overdue from '../Components/Overdue'
 import Footer from '../Components/Footer'
 import Search from '../Components/Search';
 import { useHistory } from 'react-router';
+import Edittask from '../Components/Edittask';
 
 const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,setTodas,tomorrow,setTomorrow,overdue,setOverdue,logado,setLogado,searched,setSearched}) => {  
     
@@ -21,7 +22,11 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     const [loading,setLoading] = useState(false);
     const [sort,setSort] = useState(false);
     const [show,setShow] = useState(true);
-    
+    const [edittasktoogle,setEdittasktoogle] = useState(false);
+    const [editid,setEditid] = useState(0);
+    const [edittitle,setEdittitle] = useState("");
+    const [editdesc,setEditdesc] = useState("");
+    const [mostraedit,setMostraedit] = useState(false);
 
     let history = useHistory();
 
@@ -82,7 +87,9 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
             setTimeout(() => {
                 setLoading(false);
             }, 2000);
-        });
+        })
+        .catch(err =>{
+            alert("Something happened and the tasks couldn't be loaded. Please reload the page and try again.");        });
     }, []);
 
 
@@ -130,7 +137,6 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         const to = tasks.filter(task => task.id !== id);
         setTodas(to);
         const response = await axios.delete(`http://localhost:3001/api/${id}`);
-        console.log(response);
     }
 
     const addtask = async (_title,_desc,date,_prio) =>{
@@ -193,9 +199,84 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
                 setTomorrow(am);
                 setTimeout(() => {
                     setLoading(false);
-                }, 1000);
+                }, 2000);
             });
+        }).catch(err=>{
+            alert("The task couldn't be created, please try again.");
+        });
+
+
+
+
+    }
+
+
+    const editatask = async (_id,_title,_desc,date,_prio) =>{
+        setLoading(true);
+        axios.put(`http://localhost:3001/api/task`,
+        {
+            id : _id,
+            title : _title,
+            description : _desc,
+            duedate: date,
+            priority : _prio
         })
+        .then(response =>{
+            console.log(response);
+            axios.get(`http://localhost:3001/api/${username}`)
+            .then(response2 =>{
+                let data = [response2.data];
+                data = data[0];
+                setTodas(data);
+                const a = data.filter((task) => task.concluded === 0);
+                setAll(a);
+                console.log(all);
+                let today = new Date();
+                let dd = String(today.getDate()).padStart(2, '0');
+                let mm = String(today.getMonth() + 1).padStart(2, '0');
+                let yyyy = today.getFullYear();
+                // hoje = dd + '/' + mm + '/' + yyyy;
+                let hoje = diaformatado(today);   
+                const t = data.filter((task) => task.duedate === hoje && task.concluded === 0);
+                const c = data.filter((task) => task.concluded === 1);
+                setToday(t);
+                setConcluded(c);
+                const atrasa = data.filter((task) =>{
+                    let datatask = task.duedate;
+                    let ano = datatask.substring(6,10);
+                    let mes = datatask.substring(3,5);
+                    let dia = datatask.substring(0,3);
+                    if(parseInt(yyyy) > parseInt(ano))
+                    {
+                        return true;
+                    }
+                    if(parseInt(mm) > parseInt(mes))
+                    {
+                        return true;
+                    }
+                    if(parseInt(dd) > parseInt(dia))
+                    {
+                        return true;
+                    }
+                    return false;
+                });
+                setOverdue(atrasa);
+                let tmrw = new Date(today);
+                tmrw.setDate(tmrw.getDate() + 1);
+                let amanha = diaformatado(tmrw);
+                console.log(amanha);
+                const am = data.filter((task) => task.concluded === 0 && task.duedate === amanha);
+                setTomorrow(am);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
+            }).catch(err=>{
+                alert("An erro ocurred, please try again later");
+                return;
+            });
+        }).catch(err=>{
+            alert("The task couldn't be updated, please try again later.");
+        });
 
 
 
@@ -256,7 +337,9 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         .then(response =>{
             console.log(response);
             setLoading(false);
-        })
+        }).catch(err=>{
+            alert("An error ocurred when trying to update the task. The task couldn't be updated in the database. Plase try again when you refresh the page.");
+        });
 
     }
 
@@ -360,8 +443,30 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
     }
 
     const tooggleaddtask = () =>{
+        setMostraedit(false);
         setAddtasktoogle(!addtasktoogle);
     }
+
+
+    const tooglemostraedit = (_id,_title,_desc) =>{
+        setMostraedit(false);
+        console.log("clicou em editar");
+        setEditid(_id);
+        setEdittitle(_title);
+        setEditdesc(_desc);
+        console.log(_id);
+        console.log(_title);
+        console.log(_desc);
+        setTimeout(() => {
+            document.getElementById("searchbarcontainer").scrollIntoView();
+            setAddtasktoogle(false);
+            setMostraedit(true);
+        }, 300);
+    }
+
+    
+
+
 
 
     const fazbusca = (input) =>{
@@ -392,12 +497,12 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
 
     let componente;
 
-    if(escolha == "all")componente = <All all = {all} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
-    if(escolha == "today")componente = <Today today = {today}  deletatask = {deletatask} taskconcluida ={taskconcluida}/>
-    if(escolha == "concluded")componente = <Concluded concluded = {concluded}  deletatask = {deletatask}/>
-    if(escolha == "tomorrow")componente = <Tomorrow tomorrow = {tomorrow} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
-    if(escolha == "overdue")componente = <Overdue overdue = {overdue} deletatask = {deletatask} taskconcluida ={taskconcluida}/>
-    if(escolha == "search")componente = <Search searched = {searched} deletatask = {deletatask} taskconcluida = {taskconcluida}/>
+    if(escolha == "all")componente = <All all = {all} deletatask = {deletatask} taskconcluida ={taskconcluida} tooglemostraedit = {tooglemostraedit} setMostraedit = {setMostraedit}/>
+    if(escolha == "today")componente = <Today today = {today}  deletatask = {deletatask} taskconcluida ={taskconcluida} tooglemostraedit = {tooglemostraedit} setMostraedit = {setMostraedit}/>
+    if(escolha == "concluded")componente = <Concluded concluded = {concluded}  deletatask = {deletatask} />
+    if(escolha == "tomorrow")componente = <Tomorrow tomorrow = {tomorrow} deletatask = {deletatask} taskconcluida ={taskconcluida} tooglemostraedit = {tooglemostraedit} setMostraedit = {setMostraedit}/>
+    if(escolha == "overdue")componente = <Overdue overdue = {overdue} deletatask = {deletatask} taskconcluida ={taskconcluida} tooglemostraedit = {tooglemostraedit} setMostraedit = {setMostraedit}/>
+    if(escolha == "search")componente = <Search searched = {searched} deletatask = {deletatask} taskconcluida = {taskconcluida} tooglemostraedit = {tooglemostraedit} setMostraedit = {setMostraedit}/>
     return (
         
         <div>
@@ -405,12 +510,13 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
             <div className="grid">
             {show ? <Options escolha = {escolha} setEscolha = {setEscolha}/> : ''}
             <div className="content">
-            {addtasktoogle === false ? 
+            {addtasktoogle === false && mostraedit === false ? 
             <div id="divbotaoaddtask"><button onClick = {tooggleaddtask} id = "botaoaddtask"><i className="fas fa-plus-circle" id = "mais"></i> Add Task</button>
              <div id = "sort"><button className = "sortoption" onClick = {ordena1}><i className="fas fa-sort-alpha-up"></i>&nbsp;&nbsp;Sort alphabetically</button><button className = "sortoption" onClick = {ordena2}><i className="fas fa-sort-numeric-up"></i>&nbsp;&nbsp;Sort by priority</button></div></div> 
             : ''}
             <div className="addtaskcontainer">
-            {addtasktoogle === true ? <Addtask tooggleaddtask = {tooggleaddtask} addtask = {addtask}/> : ''}
+            {addtasktoogle === true && mostraedit === false ? <Addtask tooggleaddtask = {tooggleaddtask} addtask = {addtask}/> : ''}
+            {mostraedit === true && addtasktoogle === false ? <Edittask   editid = {editid} edittitle = {edittitle} editdesc ={editdesc} setMostraedit = {setMostraedit} editatask = {editatask} /> : ' ' }
             </div>
             <div className="componentecontainer">
             {loading === false ? componente : <div className = "loadingcointainer"><div className="loader">Loading...</div></div>}

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Loginform from '../Components/Loginform'
 import '../Telainicial.css'
 import Registerform from '../Components/Registerform'
-import Tela from '../TASKIS.PNG'
+import Tela from '../taskis 2.PNG'
 import Typewriter from 'typewriter-effect';
 
 const TelaInicial = ({logged,username,setUsername,setLogged}) => {
