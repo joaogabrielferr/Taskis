@@ -5,7 +5,7 @@ import { useState } from "react";
 import Loginform from '../Components/Loginform'
 import '../Telainicial.css'
 import Registerform from '../Components/Registerform'
-import Tela from '../taskis 2.PNG'
+import Tela from '../TASKIS.PNG'
 import Typewriter from 'typewriter-effect';
 
 const TelaInicial = ({logged,username,setUsername,setLogged}) => {
@@ -49,7 +49,7 @@ const TelaInicial = ({logged,username,setUsername,setLogged}) => {
             username : _un,
             password : _pw
         }).then(response =>{
-            console.log("response:",response);
+            console.log("response do login:",response);
             if(response.data.length === 0)
             {
                 setTimeout(() => {
@@ -130,61 +130,165 @@ const TelaInicial = ({logged,username,setUsername,setLogged}) => {
 
 
     return (
-        <div className = "telainicial">
-             <div className="telainicialcontainer">
-            <div className = "headerinicial">
-                <div className="innerheaderinicial">
-                    <div id = "logoprincipal">
-                    <h2><a href="https://github.com/joaogabrielferr" target="_blank"><i className="fab fa-github"></i></a></h2>
-                    <h1>&nbsp;&nbsp;&nbsp; </h1>
-                    <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
-                    </div>
-                    <h3 id ="aboutlink">  <a href="#footertelainicial">ABOUT</a></h3>
-                </div>
-            </div>
-            <hr/>
-            <div className = "logreg">
+//         <div className = "telainicial">
+//         <div className = "headerinicial">
+//                 <div className="innerheaderinicial">
+//                     <div id = "logoprincipal">
+//                     <h2><a href="https://github.com/joaogabrielferr" target="_blank"><i className="fab fa-github"></i></a></h2>
+//                     <h1>&nbsp;&nbsp;&nbsp; </h1>
+//                     <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
+//                     </div>
+//                     <h3 id ="aboutlink">  <a href="#footertelainicial">ABOUT</a></h3>
+//                 </div>
+//             </div>
+//              <div className="telainicialcontainer">
+//             <hr/>
+//             <div className = "logreg">
 
-            <div className="logogrande">
-                <h1 id = "taskisgrande">TASKIS<i className="fas fa-check"></i></h1>
-             <h1 id = "teste">
+//             <div className="logogrande">
+//                 <h1 id = "taskisgrande">TASKIS<i className="fas fa-check"></i></h1>
+//              <h1 id = "teste">
               
-              <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                        .typeString('Create task:')
-                        .typeString('Meet friends saturday at 10 am.')
-                        .pauseFor(1000)
-                        .deleteChars(31)
-                        .typeString('finish my computer graphics project.')
-                        .pauseFor(1000)
-                        .deleteChars(36)
-                        .typeString('Study for my algorithms exam next week.')
-                        .pauseFor(1000)
-                        .deleteChars(39)
-                        .typeString('Start learning C#.')
-                        .pauseFor(1000)
-                        .deleteChars(18)
-                        .deleteAll()
-                        .typeString('Taskis👍')
-                        .pauseFor(2000)
-                        .deleteAll()
-                        .start();
-                    }}
-                    options = {{loop:true}}
-/>
+//               <Typewriter
+//                     onInit={(typewriter) => {
+//                         typewriter
+//                         .typeString('Create task:')
+//                         .typeString('Meet friends saturday at 10 am.')
+//                         .pauseFor(1000)
+//                         .deleteChars(31)
+//                         .typeString('finish my computer graphics project.')
+//                         .pauseFor(1000)
+//                         .deleteChars(36)
+//                         .typeString('Study for my algorithms exam next week.')
+//                         .pauseFor(1000)
+//                         .deleteChars(39)
+//                         .typeString('Start learning C#.')
+//                         .pauseFor(1000)
+//                         .deleteChars(18)
+//                         .deleteAll()
+//                         .typeString('Taskis👍')
+//                         .pauseFor(2000)
+//                         .deleteAll()
+//                         .start();
+//                     }}
+//                     options = {{loop:true}}
+// />
 
-        </h1>
-            </div>
+//         </h1>
+//             </div>
             
 
 
-        <p>&nbsp;</p>      
+//         <p>&nbsp;</p>      
             
           
 
-             <div id="loginresgister">
-            {mostraloginform === false ? <button onClick = {()=>setMostraloginform(true)} id = "loginbutton" >Login</button> : ''}
+//              <div id="loginresgister">
+//             {mostraloginform === false ? <button onClick = {()=>setMostraloginform(true)} id = "loginbutton" >Login</button> : ''}
+            
+//             { loadinglogin === true ? <div className="loader">Loading...</div> :(
+//             mostraloginform === true ? <div className="loginformcontainer">
+//             <Loginform setMostraloginform = {setMostraloginform} login = {login} setPesquisoulogin = {setPesquisoulogin}/>
+//             </div> : '')}
+//             { mostraloginform && naoexiste ? <p className = "mensagemform">There isn't a user with this username and password</p>:''}
+//             {pesquisoulogin && (un.length === 0 || pw.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
+//             <p>&nbsp;</p>
+//             {mostraloginreg === false ? <button onClick = {()=>setMostraloginreg(true)} id = "registerbutton">Register</button>:''}
+//             { loadingregister === true ? <div className="loader">Loading...</div> :(
+//             mostraloginreg === true ? <div className="loginformcontainer">
+//             <Registerform setMostraloginreg = {setMostraloginreg} register = {register} setPesquisouregister = {setPesquisouregister}/>
+//             </div> : '')}
+//             {pesquisouregister && (unreg.length === 0 || pwreg.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
+//             {erro ? <p className = "mensagemform">An error ocurred!</p> : ''}
+//             {jaexiste ? <p className = "mensagemform">There is already a user registered with this username. Please choose another one.</p> : ''}
+//             {registrado ? <p className = "mensagemform">Registration completed, you may log in now!</p> : ''}
+//             </div>
+//             </div>
+            
+//             <div className="imagem">
+//                 <div className="imagemcontainer">
+//                     <img src={Tela} alt=""/>
+//                 </div>
+                
+//             </div>
+//             </div>
+//             <h1>&nbsp; </h1>
+//             <h1>&nbsp; </h1>
+//         <div id = "footertelainicial">
+//             <div id="eu">
+//                 <h2>Made by João Gabriel</h2>
+//                 <div id="eusociais">
+//                     <h2><a href="https://github.com/joaogabrielferr" target="_blank"><i className="fab fa-github"></i></a></h2>
+//                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1>
+//                     <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
+//                 </div>
+//             </div>
+//             <div id = "creditos">Empty box icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+//         </div>
+//         <h1>&nbsp; </h1>
+//             <h1>&nbsp; </h1>
+
+//         </div>
+    
+        <div className = "Telainicial">
+
+            <div className="header">
+                <div className="innerheader">
+                    
+                    <div className="icons">
+                    <h2><a href="https://github.com/joaogabrielferr" target="_blank"><i className="fab fa-github"></i></a></h2>
+                     <h1>&nbsp;&nbsp;&nbsp; </h1>
+                     <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
+                    </div>
+                    <h2 id = "headerabout"><a href = "#footer">ABOUT</a></h2>
+
+                </div>
+            </div>
+
+            <div className="telainicialcontainer">
+                <div className="info">
+
+                    <div className="logogrande">
+                    <h1 id = "taskisgrande">TASKIS<i className="fas fa-check" id = "certo"></i></h1>
+                    </div>
+                    <h1>&nbsp;</h1>
+                    <div className="maquina">
+                    <h1>
+                    <Typewriter
+                        onInit={(typewriter) => {
+                            typewriter
+                            .typeString('Create task > ')
+                            .typeString('Meet friends saturday at 10 am.')
+                            .pauseFor(1000)
+                            .deleteChars(31)
+                            .typeString('finish my AI project.')
+                            .pauseFor(1000)
+                            .deleteChars(21)
+                            .typeString('Study for my algorithms exam.')
+                            .pauseFor(1000)
+                            .deleteChars(29)
+                            .typeString('Start learning C#.')
+                            .pauseFor(1000)
+                            .deleteChars(18)
+                            .deleteAll()
+                            .typeString('Taskis👍')
+                            .pauseFor(2000)
+                            .deleteAll()
+                            .start();
+                        }}
+                        options = {{loop:true}}
+                         />
+                         </h1>
+                         <h1>&nbsp;</h1>
+                    </div>
+                    <h3>&nbsp;</h3>   
+                    <div className="logreg">
+                        
+                        {/* <button className="login">Login</button>
+                         <p>&nbsp;</p>
+                        <button className="register">Register</button> */}
+
+            {mostraloginform === false ? <button onClick = {()=>setMostraloginform(true)} className = "login" >Login</button> : ''}
             
             { loadinglogin === true ? <div className="loader">Loading...</div> :(
             mostraloginform === true ? <div className="loginformcontainer">
@@ -193,42 +297,55 @@ const TelaInicial = ({logged,username,setUsername,setLogged}) => {
             { mostraloginform && naoexiste ? <p className = "mensagemform">There isn't a user with this username and password</p>:''}
             {pesquisoulogin && (un.length === 0 || pw.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
             <p>&nbsp;</p>
-            {mostraloginreg === false ? <button onClick = {()=>setMostraloginreg(true)} id = "registerbutton">Register</button>:''}
+            {mostraloginreg === false ? <button onClick = {()=>setMostraloginreg(true)} className = "register">Register</button>:''}
             { loadingregister === true ? <div className="loader">Loading...</div> :(
-            mostraloginreg === true ? <div className="loginformcontainer">
-            <Registerform setMostraloginreg = {setMostraloginreg} register = {register} setPesquisouregister = {setPesquisouregister}/>
-            </div> : '')}
-            {pesquisouregister && (unreg.length === 0 || pwreg.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
-            {erro ? <p className = "mensagemform">An error ocurred!</p> : ''}
-            {jaexiste ? <p className = "mensagemform">There is already a user registered with this username. Please choose another one.</p> : ''}
-            {registrado ? <p className = "mensagemform">Registration completed, you may log in now!</p> : ''}
-            </div>
-            </div>
-            
-            <div className="imagem">
-                <div className="imagemcontainer">
-                    <img src={Tela} alt=""/>
+             mostraloginreg === true ? <div className="loginformcontainer">
+          <Registerform setMostraloginreg = {setMostraloginreg} register = {register} setPesquisouregister = {setPesquisouregister}/>
+             </div> : '')}
+             {pesquisouregister && (unreg.length === 0 || pwreg.length === 0) ? <p className = "mensagemform">Enter a valid username and password</p>:''}
+             {erro ? <p className = "mensagemform">An error ocurred!</p> : ''}
+             {jaexiste ? <p className = "mensagemform">There is already a user registered with this username. Please choose another one.</p> : ''}
+             {registrado ? <p className = "mensagemform">Registration completed, you may log in now!</p> : ''}
+
+
+
+                    </div>
+
                 </div>
-                
+
+                <div className="imagem">
+                    <div className="imagemcontainer">
+                        <img src = {Tela} alt="" />
+                    </div>
+                </div>
+
+
             </div>
-            </div>
-            <h1>&nbsp; </h1>
-            <h1>&nbsp; </h1>
-        <div id = "footertelainicial">
-            <div id="eu">
-                <h2>Made by João Gabriel</h2>
-                <div id="eusociais">
+
+            <div id="footer">
+
+                <div className="innerfooter">
+                <div id="sociais">
+                    <h2>Made by João Gabriel</h2>
+                    <div className="icons">
                     <h2><a href="https://github.com/joaogabrielferr" target="_blank"><i className="fab fa-github"></i></a></h2>
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1>
-                    <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
+                     <h1>&nbsp;&nbsp;&nbsp; </h1>
+                     <h2><a href="https://www.linkedin.com/in/joaogabrielferr" target = "_blank"><i className="fab fa-linkedin"></i></a></h2>
+                    </div>
+                </div>
+
+                <div className="creditos">
+                <div>Empty box icon made by <a href="https://www.freepik.com" target = "_blank" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" target = "_blank" title="Flaticon">www.flaticon.com</a></div>
+
+                </div>
+
+
                 </div>
             </div>
-            <div id = "creditos">Empty box icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        </div>
-        <h1>&nbsp; </h1>
-            <h1>&nbsp; </h1>
+
 
         </div>
+
     )
 }
 

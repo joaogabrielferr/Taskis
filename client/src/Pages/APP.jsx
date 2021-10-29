@@ -42,6 +42,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         setLoading(true);
         axios.get(`http://localhost:3001/api/${username}`)
         .then(response =>{
+            console.log(response);
             let data = [response.data];
             data = data[0];
             setTodas(data);
@@ -95,7 +96,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
 
     const deletatask = async (id) =>{
         const tasks = todas;
-        const a = tasks.filter(task => task.concluded === 0 && task.id != id);
+        const a = tasks.filter(task => task.concluded === 0 && task._id != id);
         setAll(a);
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
@@ -103,24 +104,24 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         let yyyy = today.getFullYear();
         let hoje = diaformatado(today);
         console.log(hoje);
-        const t = tasks.filter(task => task.duedate === hoje && task.concluded === 0 && task.id !== id);
+        const t = tasks.filter(task => task.duedate === hoje && task.concluded === 0 && task._id !== id);
         setToday(t);
-        const c = tasks.filter(task => task.concluded === 1 && task.id !== id) 
+        const c = tasks.filter(task => task.concluded === 1 && task._id !== id) 
         setConcluded(c);
         const atrasa = tasks.filter((task) =>{
             let datatask = task.duedate;
             let ano = datatask.substring(6,10);
             let mes = datatask.substring(3,5);
             let dia = datatask.substring(0,3);
-            if(parseInt(ano) < parseInt(yyyy) && task.id !== id)
+            if(parseInt(ano) < parseInt(yyyy) && task._id !== id)
             {
                 console.log("comparação:",parseInt(yyyy)," e ",parseInt(ano));
                 return true;
-            }else if(parseInt(mes) < parseInt(mm) && task.id !== id)
+            }else if(parseInt(mes) < parseInt(mm) && task._id !== id)
             {
                 console.log("comparação:",parseInt(mm)," e ",parseInt(mes));
                 return true;
-            }else if(parseInt(dia) < parseInt(dd) && task.id !== id)
+            }else if(parseInt(dia) < parseInt(dd) && task._id !== id)
             {
                 console.log("comparação:",parseInt(dd)," e ",parseInt(dia));
                 return true;
@@ -132,9 +133,9 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         tmrw.setDate(tmrw.getDate() + 1);
         let amanha = diaformatado(tmrw);
         console.log(amanha);
-        const am = tasks.filter((task) => task.concluded === 0 && task.duedate === amanha && task.id !== id);
+        const am = tasks.filter((task) => task.concluded === 0 && task.duedate === amanha && task._id !== id);
         setTomorrow(am);        
-        const to = tasks.filter(task => task.id !== id);
+        const to = tasks.filter(task => task._id !== id);
         setTodas(to);
         const response = await axios.delete(`http://localhost:3001/api/${id}`);
     }
@@ -294,29 +295,29 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         let tasks = todas;
         let tsks = todas;
         tsks.forEach(task => {
-            if(task.id === id)task.concluded = 1;
+            if(task._id === id)task.concluded = 1;
         });
-        const a = tasks.filter(task => task.concluded === 0 && task.id != id);
+        const a = tasks.filter(task => task.concluded === 0 && task._id != id);
         setAll(a);
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0');
         let yyyy = today.getFullYear();
         let hoje = diaformatado(today);
-        const t = tasks.filter(task => task.duedate === hoje && task.concluded === 0 && task.id !== id);
+        const t = tasks.filter(task => task.duedate === hoje && task.concluded === 0 && task._id !== id);
         setToday(t);
         const atrasa = tasks.filter((task) =>{
             let datatask = task.duedate;
             let ano = datatask.substring(6,10);
             let mes = datatask.substring(3,5);
             let dia = datatask.substring(0,3);
-            if(parseInt(ano) < parseInt(yyyy) && task.id !== id && task.concluded === 0)
+            if(parseInt(ano) < parseInt(yyyy) && task._id !== id && task.concluded === 0)
             {
                 return true;
-            }else if(parseInt(mes) < parseInt(mm) && task.id !== id && task.concluded === 0)
+            }else if(parseInt(mes) < parseInt(mm) && task._id !== id && task.concluded === 0)
             {
                 return true;
-            }else if(parseInt(dia) < parseInt(dd) && task.id !== id && task.concluded === 0)
+            }else if(parseInt(dia) < parseInt(dd) && task._id !== id && task.concluded === 0)
             {
                 return true;
             }else return false;
@@ -327,7 +328,7 @@ const APP = ({username,all,setAll,today,setToday,concluded,setConcluded,todas,se
         tmrw.setDate(tmrw.getDate() + 1);
         let amanha = diaformatado(tmrw);
         console.log(amanha);
-        const am = tasks.filter((task) => task.concluded === 0 && task.duedate === amanha && task.id !== id);
+        const am = tasks.filter((task) => task.concluded === 0 && task.duedate === amanha && task._id !== id);
         setTomorrow(am); 
         const c = tsks.filter(task => task.concluded === 1) 
         setConcluded(c);

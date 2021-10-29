@@ -11,7 +11,7 @@ const Options = ({escolha,setEscolha}) => {
 
         
         let li = document.getElementById(id);
-        li.style.backgroundColor = "#adadad";
+        li.style.backgroundColor = "#43608f";
         let pai = li.parentNode;
         let filhos = pai.children;
         for(let i = 0;i<filhos.length;i++)

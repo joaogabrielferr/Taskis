@@ -3,287 +3,208 @@
     font-family: 'Poppins', sans-serif;
 }
 
-#logoprincipal{
-    transition: 0.5s;
-    font-size: 3vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+html {
+    scroll-behavior: smooth;
+  }
 
-#taskisgrande{
-    color: black;
-}
-
-#aboutlink{
-    font-size: 3vh;
-}
-
-#creditos{
-    font-size: 2.5vh;
-}
-
-#loginresgister{
+.header{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 5vh;
-}
-
-.mensagemform{
-    font-size: 2.5vh;
-}
-
-#loginbuttons{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    font-size: larger;
-}
-
-.botaodelogin,.botaodecancelar{
-    border-style: none;
-    padding:1%;
-    cursor:pointer;
-    font-size: 2vh;
-
-}
-
-.botaodelogin{
-    width: 100%;
-    background-color: #2e5799;
+    height: 7vh;
+    background-color: #171717;
     color: white;
-
 }
 
-.botaodecancelar{
-    width: 100%;
+.header a{
+    text-decoration: none;
+    color: white;
 }
 
-#loginbutton,#registerbutton{
-    width: 15vw;
-    height: 5vh;
-    cursor: pointer;
-    border-style: none;
-    color:white;
-    font-size: 3vh;
-    background-color: #2e5799;
-    transition: 0.2s;
-}
-
-#loginbutton:hover,#registerbutton:hover{
-    letter-spacing: 0.3rem;
-}
-
-
-.loginform{
-    width: 100%;
+.innerheader{
+    width: 95%;
     height: 100%;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-}
-
-.loginformcontainer{
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.logincontainer,.registercontainer{
-    width: 30vw;
+.icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5vh;
+    color: white;
 }
 
-
-.inputlogin{
-    padding: 1%;
-    border-style: none;
-    border: 0.1rem solid grey;
-    width: 80%;
-    padding:3%;
-    font-size: large;
-
+.fa-github,.fa-linkedin{
+    color: white;
 }
 
-
+#headerabout{
+    font-size: 3vh;
+}
 
 .telainicialcontainer{
+    width: 100%;
+    height: 90vh;
     display: flex;
+    background-color: #26272b;
+}
+
+.info{
+    width: 80vw;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 2.5vw;
     flex-direction: column;
+    color: white;
+}
+
+
+.maquina{
+    width: 100%;
+    text-align: left;
+    font-size: 2vh;
 }
 
 .logreg{
-    width: 90%;
-    height: 65vh;
+   
+    width: 100%;
+    text-align: left;
     display: flex;
-    /* justify-content: center; */
-    z-index: 0;
-    position: relative;
     flex-direction: column;
-    align-items: flex-start;
-    /* margin-left: 10%; */
-    margin: 0 auto;
-    flex-direction: row;
+}
+
+.login,.register{
+    width: 20vw;
+    font-size: 3vh;
+    background-color: white;
+    border-style: none;
+    color: black;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.login:hover,.register:hover{
+    letter-spacing: 0.5vh;
 }
 
 .imagem{
+
     width: 100%;
     height: 100%;
-    display:flex;
+    
+    display: flex;
     justify-content: center;
     align-items: center;
-    animation: MoveUpDown 10s linear infinite;
-    position: relative;
-
-    
 }
 
 .imagemcontainer{
-    width: 1280px;
-    height: 592px;
-    /* width: 70vw;
-    height: 32vh; */
+    width: 90%;
+    height: 30v;
+    
+    
 }
 
 .imagemcontainer img{
     width: 100%;
     height: auto;
     object-fit: contain;
-    border-radius: 0.5rem;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 1vh;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;    animation: MoveUpDown 15s linear infinite;
 }
+
 
 @keyframes MoveUpDown {
     0%, 100% {
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-3%);
+      transform: translateY(-3vh);
     }
   }
 
-  .headerinicial{
-    width: 100%;
-    height: 7vh;
+.fa-check{
     color: white;
-    background-color: #171717;
-  }
-
-  .innerheaderinicial{
-      width: 95%;
-      height: 100%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-  }
-
-  .innerheaderinicial a{
-      text-decoration: none;
-      color: white;
-  }
-
-#teste{
-    font-size: 5vh;
-    font-family: 'Poppins', sans-serif;
 }
 
-#footertelainicial{
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-}
-
-#eu{
-    display: grid;
-    grid-template-rows: auto auto;
-    row-gap: 0.5rem;
-    color: black;
-    font-size: 2vh;
-}
-
-#eusociais{
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: larger;
-}
-
-#eusociais i:hover{
-    transform: translateY(-10%);
-}
-
-.logogrande{
-    font-size: 8vh;
-    width: 100%;
-    text-align: left;
-}
-
-.logogrande h1{
-    transition: 0.8s;
-}
-
-.logogrande h1 i{
+#certo{
     color: #2e5799;
 }
 
+.logogrande{
+    font-size: 7vh;
+    width: 100%;
+    height: 20vh;
+    text-align: left;
+    color: white;
+}
+
+#taskisgrande{
+    transition: 0.7s;
+
+}
 #taskisgrande:hover{
-    color:#2e5799;
-    letter-spacing: -10vw;
+    letter-spacing: -20vh;
     color: transparent;
 }
 
+.logincontainer,.registercontainer{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
 
+.logincontainer input,.registercontainer input{
+    font-size: 2.5vh;
+    padding: 1vh;
+}
 
+.loginbuttons{
+    display: flex;
+    width: 100%;
+}
 
-html {
-    scroll-behavior: smooth;
-  }
+.botaodelogin{
+    width: 100%;
+    border-style: none;
+    background-color: #2e5799;
+    color: white;
+    font-size: 2.5vh;
+    cursor: pointer;
+}
+.botaodecancelar{
+    width: 100%;
+    border-style: none;
+    font-size: 2.5vh;
+    cursor: pointer;
+}
 
-  @media only screen and (max-width:600px) {
-    .logogrande{
-        font-size: 3vh;
-        width: 100%;
-        text-align: left;
-    }
-
-    .logreg{
-        flex-direction: column;
-        height: 90vh;
-    }
-
-    #loginresgister{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5vh;
-    }
-
-    .inputlogin{
-        padding: 1%;
-        border-style: none;
-        border: 0.1rem solid grey;
-        width: 100%;
-        padding:1%;
-        font-size: large;
+#footer{
+    width: 100%;
+    height: 30vh;
+    background-color:#171717;
+    font-size: 2vh;
     
-    }
-    #loginbutton,#registerbutton{
-        width: 40vw;
-        height: 5vh;
-        cursor: pointer;
-        border-style: none;
-        color:white;
-        font-size: 3vh;
-        background-color: #2e5799;
-        transition: 0.2s;
-    }
-  }
+}
+
+.innerfooter{
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.sociais{
+    display: flex;
+    flex-direction: column;
+}
+
+.icon{
+    display: flex;
+}

@@ -9,6 +9,7 @@
 }
 
 
+
 .headerapp{
   width: 100%;
   height: 7vh;
@@ -79,7 +80,8 @@
   justify-content: center;
   /* float: left; */
   grid-area : opcoes;
-  background-color: #ebebeb;
+  background-color: #2e2e2e;
+  color: white;
 }
 
 #inneroptions{
@@ -87,7 +89,7 @@
   height: 50%;
   display: flex;
   flex-direction: column;
-  
+  color: white;
 }
 
 
@@ -95,10 +97,12 @@
 
 #ulopcao{
   margin-top: 5%;
+  color: white;
 }
 
 .liopcao{
   display: flex;
+  color: white;
 }
 
 .liopcao:hover{
@@ -115,7 +119,7 @@
   border-style: none;
   background-color: transparent;
   cursor: pointer;
-  color: black;
+  color: white;
   text-align: left;
   font-size: 2.5vh;
 
@@ -209,9 +213,8 @@
   background-color: #ebebeb;
 }
 
-.checkbox:hover{
-    cursor: pointer;
-    box-shadow: 0px 0px 1px #fc4e03;
+.checkbox{
+    font-size: 1.5vh;
 }
 
 .grid{
@@ -253,6 +256,7 @@
   width: 90%;
   margin-top: 5%;
   font-size: 3.80vh;
+  color: black;
 
 }
 
@@ -379,11 +383,15 @@
 }
 
 #taskcontent h3{
-  font-size: 3vh;
+  font-size: 2.5vh;
 }
 
-#taskcontent h5{
+#taskcontent h4{
   font-size: 1.5vh;
+}
+
+#taskcontent p{
+  font-size: 2vh;
 }
 
 #prioanddatetask{
@@ -623,23 +631,24 @@
 }
 
 #tudo{
-  color: #2e5799;
+  /* color: #2e5799; */
+  color: white;
 }
 
 #hoje{
-  color: orange;
+  /* color: orange; */
 }
 
 #amanha{
-  color: green;
+  /* color: green; */
 }
 
 #atrasado{
-  color: red;
+  /* color: red; */
 }
 
 #concluido{
-  color: purple;
+  /* color: purple; */
 }
 
 @media only screen and (max-width:600px)
