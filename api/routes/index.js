@@ -11,34 +11,6 @@ const TaskModel = require("../models/Task");
 
 
 
-// router.put("/atualizamongodb",async (req,res)=>{
-//     try{
-//     const updatedtask = {
-//         title:"TROQUEI O TITULO FODASSSSS"
-//     }
-
-//     await TaskModel.updateOne({_id:"617bf9f94b6b08cd64b34ea8"},{$set:updatedtask});
-//     res.send("mudou a task");
-//     }catch(err)
-//     {
-//         res.send(err);
-//     }
-// });
-
-
-//pega todas as tasks de um usuario
-// router.get("/:id", async (req,res) =>
-// {
-//     try{
-//     let results = await db.tasksuser(req.params.id);
-//     res.json(results);
-//     }catch(err)
-//     {
-//         console.log(err);
-//         res.status(500).send(err);
-//     }
-// });
-
 //pega todas as tasks de um usuario
 router.get("/:id",async (req,res)=>{
     
@@ -49,19 +21,6 @@ router.get("/:id",async (req,res)=>{
 });
 
 
-
-// //cria uma nova task no bd
-// router.post("/",[body('un').trim().escape(),body('description').trim().escape()],  async (req,res) =>{
-
-//     try{
-//         let d = req.body;
-//         let results = await db.posttask(d.un,d.title,d.description,d.duedate,d.priority,d.concluded,d.archived);
-//         res.status(200).send("Task created in the database");
-//     }catch(err)
-//     {
-//             res.send(err);
-//     }
-// });
 
 //cria uma nova task no bd
 router.post("/",[body('un').trim().escape(),body('description').trim().escape(),body('title').trim().escape()], async (req,res)=>{
@@ -80,16 +39,6 @@ router.post("/",[body('un').trim().escape(),body('description').trim().escape(),
 });
 
 
-//deleta task
-// router.delete("/:id", async (req,res) =>{
-//     try{
-//         await db.deletetask(req.params.id);
-//         res.status(200).send("task was deleted");
-//     }catch(err)
-//     {
-//         res.send(err);
-//     }
-// });
 
 //deletatask
 router.delete("/:id", async (req,res) =>{
@@ -102,18 +51,6 @@ router.delete("/:id", async (req,res) =>{
     }
 });
 
-//att task
-// router.put("/task",
-// [body('id').trim().escape(),body('title').trim().escape(),body('description').trim().escape()],async (req,res) =>{
-//     try{
-//         let d = req.body;
-//         await db.editatask(d.id,d.title,d.description,d.duedate,d.priority);
-//         res.status(200).send("task was updated");
-//     }catch(err)
-//     {
-//         res.send(err);
-//     }
-// });
 
 //att task
 router.put("/task",
@@ -139,32 +76,6 @@ router.put("/task",
 
 
 
-// router.put("/atualizamongodb",async (req,res)=>{
-//     try{
-//     const updatedtask = {
-//         title:"TROQUEI O TITULO FODASSSSS"
-//     }
-
-//     await TaskModel.updateOne({_id:"617bf9f94b6b08cd64b34ea8"},{$set:updatedtask});
-//     res.send("mudou a task");
-//     }catch(err)
-//     {
-//         res.send(err);
-//     }
-// });
-
-
-
-//att task concluida
-// router.put("/:id",async (req,res) =>{
-//     try{
-//         await db.attconcluida(req.params.id);
-//         res.status(200).send("task was updated, now it is concluded");
-//     }catch(err)
-//     {
-//         res.send(err);
-//     }
-// });
 
 //att task concluida
 router.put("/:id", async (req,res) =>{
@@ -179,16 +90,6 @@ router.put("/:id", async (req,res) =>{
 });
 
 
-//retorna se existe um usuario no bd com o dado username e password
-// router.post("/user",[body('username').trim().escape(),body('password').trim().escape()], async (req,res) =>{
-//     try{
-//         let results = await db.user(req.body.username,req.body.password);
-//         res.json(results);
-//     }catch(err)
-//     {
-//         res.send("N");
-//     }
-// });
 
 //retorna um usuario no bd com o dado username e password
 router.post("/user",[body('username').trim().escape(),body('password').trim().escape()],async (req,res)=>{
@@ -201,19 +102,6 @@ router.post("/user",[body('username').trim().escape(),body('password').trim().es
 
 
 //verifica se existe um usuario no bd com o dado username
-
-// router.post("/user/check",[body('username').trim().escape()],async (req,res) =>{
-//     try{
-//         let results = await db.checkuser(req.body.username);
-//         res.json(results);
-//     }catch(err)
-//     {
-//         res.send("ERRO:",err);
-//     }
-// });
-
-
-//verifica se existe um usuario no bd com o dado username
 router.post("/user/check",[body('username').trim().escape()],async (req,res) =>{
     await UserModel.find({username:req.body.username} ,(error,results)=>{
         if(error)res.send(error);
@@ -221,17 +109,6 @@ router.post("/user/check",[body('username').trim().escape()],async (req,res) =>{
     });
 });
 
-//cria usuario no bd com o dado username e password
-// router.post("/user/create",[body('username').trim().escape(),body('password').trim().escape()], async (req,res) =>{
-//     try{
-
-//         await db.createuser(req.body.username,req.body.password);
-//         res.status(200).send("user created in the database");
-//     }catch(err)
-//     {
-//         res.status(400).send(err);
-//     }
-// });
 
 
 //cria um usuario no bd com o dado username e password
