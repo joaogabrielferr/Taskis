@@ -1,3 +1,6 @@
+/////////////mysql trocado por MongoDB/////////////
+
+
 const mysql = require("mysql");
 
 const pool = mysql.createPool(
@@ -12,7 +15,7 @@ const pool = mysql.createPool(
 
 let mydb = {};
 
-//get as tasks do usuario
+//pega as tasks do usuario
 mydb.tasksuser = (username) =>{
     return new Promise((resolve,reject) =>{
         pool.query("SELECT * FROM task WHERE username = ?",[username],(err,results)=>{
